@@ -16,8 +16,8 @@ var topParticle = function(){
   if (Math.random() <= 0.5){
     this.dy *= -1;
   }
-  this.ddx = 0.25 - Math.random() * 0.5;
-  this.ddy = 0.25 - Math.random() * 0.5;
+  this.ddx = 0.3 - Math.random() * 0.6;
+  this.ddy = 0.3 - Math.random() * 0.6;
   this.size = 1 + Math.random() * 1.5;
   this.dSize = 0.5 + Math.random() * 0.3;
   this.alpha = 0.45;
@@ -79,14 +79,7 @@ var testWindowSize = function(){
 var updateColor = function(){
   $('#bubbles-canvas').css('background-color', colorShader((colorRay[Math.floor(Math.random() * 765)]), 170));
 }
-var titleOut = function(){
-  $('.project-title').css('position', 'fixed');
-  $('.project-title').css('transform', "translateX(700px)");
-}
-var titleIn = function(){
-  $('.project-title').css('left', "-100px");
-  $('.project-title').css('transform', 'translateX(400px)');
-}
+
 var updateTopCanvas = function(){
   topctx.clearRect(0,0,topCanvas.width,topCanvas.height);
   updateTopParticles();

@@ -1,0 +1,13 @@
+.fixed {
+  position: fixed;
+}
+.titleOut {
+  transform: translateX(400px);
+}
+.titleIn {
+  left: -300px;
+}
+
+.invisible {
+  display: none;
+}
