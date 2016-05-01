@@ -1,0 +1,163 @@
+body {
+  background-color: black;
+  position: static;
+  top: 0;
+  right: 0;
+  font-family: "Lucida Console", Monaco, monospace;
+  color: white;
+  font-size: 16px;
+}
+.label {
+  margin-top: -15px;
+}
+.label h1 {
+  margin-bottom: 0;
+}
+.label h3 {
+  margin-top: 0;
+}
+nav {
+  position: absolute;
+  right: 15px;
+  top: 5px;
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav ul li {
+  float:left;
+  padding-right: 5px;
+  margin-right: 5px;
+  border-right: 1px solid white;
+}
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 1em;
+}
+#Mmenu{
+  display: none;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}
+#Mmenu div {
+ position: absolute;
+ right: 100%;
+ top: 64%;
+ padding-right: 8px;
+ margin-top: -0.50em;
+ line-height: 1.2;
+ font-size: 18px;
+ font-weight: 200;
+ vertical-align: middle;
+ z-index: 99;
+}
+
+#Mmenu span {
+ display: block;
+ width: 23px;
+ height: 4px;
+ margin: 4px 0;
+ background: rgb(255,255,255);
+ z-index: 99;
+}
+.project-title{
+  position: absolute;
+  top: 33%;
+  left: 25%;
+  font-size: 1.2em;
+  transition: transform 2s;
+}
+.project-title:hover{
+  position: fixed;
+  transform: translateX(400px);
+}
+.project-description{
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  margin-right: 20px;
+}
+/*media queries*/
+@media only screen and (max-width: 682px){
+  nav {
+    margin-top: 5.5px;
+    padding-right: 5px;
+  }
+  nav ul li a {
+    font-size: 0.9em;
+  }
+  .label {
+    margin-top: -12px
+  }
+  .label h1{
+    font-size: 1.4em;
+  }
+  .label h3 {
+    font-size: 1em;
+    margin-top: 0;
+    padding-top: 0
+  }
+  .project-title h1{
+    font-size: 1.2em
+  }
+  .project-description p{
+    font-size: .9em;
+  }
+}
+
+@media only screen and (max-width: 520px){
+  nav {
+    display: none;
+  }
+  #Mmenu {
+    display: block;
+  }
+  .project-description{
+    left: 25%;
+  }
+}
+@media only screen and (max-width: 303px){
+  .label {
+    margin-top: 7px;
+  }
+  .label h1{
+    font-size: .8em;
+    margin-top: 5px;
+    padding-top: 5px;
+  }
+  .label h3 {
+    font-size: .6em;
+  }
+  .project-title{
+    top: 100px;
+    font-size: .8em;
+  }
+  .project-description{
+    font-size: .6em;
+  }
+}
+@media only screen and (max-width: 193px){
+  .label {
+    width: 75%;
+  }
+}
+@media only screen and (max-height: 315px){
+  body{
+    background-color: red;
+  }
+  .project-description{
+    top: 50%;
+  }
+}
+
+#bubbles-canvas{
+  z-index: -1;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transition: background-color 3s;
+}
