@@ -52,12 +52,20 @@ var updateTopParticles = function(){
     if (particles[i].size > 350){
       particles[i].maxSize = true;
     }
+
     if (particles[i].x >= topCanvas.width +1000 || particles[i].x <= -1000){
       particles.splice(i, 1);
+      if (i != 0){
+        i -=1;
+      }
     }
     if (particles[i].y >= topCanvas.height + 1000 || particles[i].y <= -1000){
       particles.splice(i, 1);
+      if (i != 0){
+        i -=1;
+      }
     }
+
   }
   topctx.globalAlpha = 1;
 }
