@@ -20,6 +20,8 @@ nav {
   position: absolute;
   right: 15px;
   top: 5px;
+  margin-top: 22px;
+  margin-right: 6px;
 }
 
 nav ul {
@@ -65,18 +67,15 @@ nav ul li a {
  z-index: 99;
 }
 .project-title{
-  position: absolute;
+  position: fixed;
   top: 33%;
   left: 25%;
   font-size: 1.2em;
-  transition: transform 2s;
+  transition: left 2s;
 }
-.project-title:hover{
-  position: fixed;
-  transform: translateX(400px);
-}
+
 .project-description{
-  position: absolute;
+  position: fixed;
   top: 70%;
   left: 50%;
   margin-right: 20px;
@@ -119,10 +118,14 @@ nav ul li a {
   .project-description{
     left: 25%;
   }
+  .label{
+    position: absolute;
+    top: 5px;
+  }
 }
 @media only screen and (max-width: 303px){
-  .label {
-    margin-top: 7px;
+  .label{
+    top: 13px;
   }
   .label h1{
     font-size: .8em;
@@ -143,6 +146,7 @@ nav ul li a {
 @media only screen and (max-width: 193px){
   .label {
     width: 75%;
+    padding-top: 0;
   }
 }
 @media only screen and (max-height: 315px){
