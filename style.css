@@ -70,15 +70,20 @@ nav ul li a {
   position: fixed;
   top: 33%;
   left: 25%;
-  font-size: 1.2em;
   transition: left 2s;
 }
-
+.project-title a {
+  font-size: 1.4em;
+  text-decoration: none;
+  color: white;
+}
 .project-description{
   position: fixed;
   top: 70%;
   left: 50%;
   margin-right: 20px;
+  width: 50%;
+  transition: left 2s;
 }
 /*media queries*/
 @media only screen and (max-width: 682px){
