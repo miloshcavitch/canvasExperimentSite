@@ -205,6 +205,9 @@ var checkFrame = function(){
     updateProject();
   }
   if (windowState === 'shrink' && tweenCount >= transitionTime){
+    activeBack = projectsRay[titleIndex].func;
+    mouse.x = window.innerWidth/2;
+    mouse.y = window.innerHeight/2;
     console.log('grow!')
     windowState = 'grow';
     tweenCount = 0;
@@ -227,6 +230,18 @@ var updateTopCanvas = function(){
   topctx.fillStyle = 'red';
   topctx.fillRect(0,0,window.innerWidth,window.innerHeight);
   updateTopParticles();
+
+  topctx.strokeStyle = 'white';
+  topctx.globalAlpha = 0.3;
+  topctx.lineWidth = 5;
+  windowCircles.forEach(function(wC){
+    topctx.beginPath();
+    topctx.arc(wC.x,wC.y,(wC.currentHover * wC.currentSizeX),0,Math.PI * 2);
+    topctx.stroke();
+    topctx.closePath();
+  });
+  topctx.globalAlpha = 1;
+
   topctx.globalCompositeOperation = 'destination-out';
   updateWindowCircles();
   //below is for testing
