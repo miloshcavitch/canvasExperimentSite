@@ -86,24 +86,25 @@ var testWindowSize = function(){
 ////////////////////////////////
 //Window Circles
 var windowCircles = [];
-var windowBounds = {xLeft: window.innerWidth/5, xRight: window.innerWidth - window.innerWidth/5,
+var windowBounds = {xLeft: window.innerWidth/4, xRight: window.innerWidth - window.innerWidth/4,
                     yTop: window.innerHeight/4, yBottom: window.innerHeight- window.innerHeight/4};
 var desiredCircleArea;
 var updateBounds = function(){
   var lastWidth = windowBounds.xRight - windowBounds.xLeft;
   var lastHeight = windowBounds.yBottom - windowBounds.yTop;
-  windowBounds.xRight = topCanvas.width - topCanvas.width/5;
-  windowBounds.xLeft = topCanvas.width/5;
+  windowBounds.xRight = topCanvas.width - topCanvas.width/4;
+  windowBounds.xLeft = topCanvas.width/4;
   windowBounds.yTop = topCanvas.height/4;
   windowBounds.yBottom = topCanvas.height - topCanvas.height/4;
   var newWidth = windowBounds.xRight - windowBounds.xLeft;
   var newHeight = windowBounds.yBottom - windowBounds.yTop;
-  desiredCircleArea = (newWidth * newHeight)/ 1000;
+  desiredCircleArea = (newWidth * newHeight)/ 500;
   windowCircles.forEach(function(c){
     c.x = c.x * (newWidth/lastWidth);
     c.y = c.y * (newHeight/lastHeight);
   });
 }
+updateBounds()//init setting;
 var WindowCircle = function(){
   this.x = (Math.random() * (windowBounds.xRight -windowBounds.xLeft)) + windowBounds.xLeft;
   this.y = (Math.random() * (windowBounds.yBottom - windowBounds.yTop)) + windowBounds.yTop;
@@ -135,8 +136,10 @@ var updateWindowCircles = function(){
 }
 var windowState = 'grow';
 var updateWindowCircles = function(){
+  checkFrame();
   switch (windowState){
     case 'grow':
+      console.log('grow');
       windowCircles.forEach(function(wC){
         wC.draw();
         wC.currentSizeX += wC.growthSpeedX;
@@ -150,6 +153,7 @@ var updateWindowCircles = function(){
       break;
 
     case 'mid':
+      console.log('mid');
       windowCircles.forEach(function(wC){
         wC.draw();
         if (titleHover === true && wC.currentHover < 1.1){
@@ -161,6 +165,7 @@ var updateWindowCircles = function(){
       });
       break;
     case 'shrink':
+      console.log('shrink')
       windowCircles.forEach(function(wC){
         wC.draw();
         wC.currentSizeX -= wC.growthSpeedX;
@@ -171,19 +176,35 @@ var updateWindowCircles = function(){
       break;
   }
 }
+var repopulateWindowCircles = function(){
+  windowCircles = [];
+  var circleArea = 0;
+  var i = 0;
+  while (circleArea < desiredCircleArea){
+    windowCircles.push(new WindowCircle());
+    circleArea += windowCircles[i].finalSizeX;
+    i++;
+  }
+}
 var tweenCount = 0;
 var checkFrame = function(){
   tweenCount++;
   if (windowState === 'grow' && tweenCount === transitionTime){
+    console.log('MID!');
     windowState = 'mid';
     tweenCount = 0;
   }
   if (windowState === 'mid' && tweenCount >= 200){
+    console.log('SHRINK!');
     windowState = 'shrink';
     tweenCount = 0;
+    updateProject();
   }
   if (windowState === 'shrink' && tweenCount >= transitionTime){
-    
+    console.log('grow!')
+    windowState = 'grow';
+    tweenCount = 0;
+    repopulateWindowCircles();
   }
 }
 var titleHover = false;

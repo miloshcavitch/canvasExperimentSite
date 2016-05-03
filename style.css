@@ -72,9 +72,7 @@ nav ul li a {
   left: 25%;
   transition: left 2s;
 }
-.project-title a:hover{
-  color: black;
-}
+
 .project-title a {
   font-size: 1.6em;
   text-decoration: none;
