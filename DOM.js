@@ -40,7 +40,7 @@ var updateLink = function(){
   }, 10)
   titleSwitch = !titleSwitch;
   titleIndex++;
-  if (titleIndex === projectsRay.length -1){
+  if (titleIndex === projectsRay.length){
     titleIndex = 0;
   }
 }
@@ -52,4 +52,6 @@ var updateProject = function(){
 }
 $(document).on('click', function(){
   updateProject();
+  tweenCount = 0;
+  windowState = 'shrink';
 });

@@ -164,7 +164,8 @@ nav ul li a {
   }
 }
 
-#bubbles-canvas{
+#bubbles-canvas,
+#window-canvas{
   z-index: -1;
   position: fixed;
   left: 0;

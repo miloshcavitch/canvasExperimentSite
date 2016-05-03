@@ -1,3 +1,6 @@
+//init
+updateProject();
+repopulateWindowCircles();
 var update = function(){
   testWindowSize();
   updateTopCanvas();

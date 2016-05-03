@@ -1,6 +1,8 @@
 var elTiempo = new Date();
 var topCanvas = document.getElementById('bubbles-canvas');
 var topctx = topCanvas.getContext('2d');
+var windowCanvas = document.getElementById('window-canvas');
+var winctx = windowCanvas.getContext('2d');
 topCanvas.width = window.innerWidth;
 topCanvas.height = window.innerHeight;
 var transitionTime = 30;
@@ -73,11 +75,14 @@ var updateTopParticles = function(){
 var testWindowSize = function(){
   if (topCanvas.width != window.innerWidth){
     topCanvas.width = window.innerWidth;
+    windowCanvas.width = window.innerWidth;
     topEmitter.x = topCanvas.width + 100;
+
     updateBounds();
   }
   if (topCanvas.height != window.innerHeight){
     topCanvas.height = window.innerHeight;
+    windowCanvas.height = window.innerHeight;
     topEmitter.y = topCanvas.height + 30;
     updateBounds();
   }
@@ -98,7 +103,7 @@ var updateBounds = function(){
   windowBounds.yBottom = topCanvas.height - topCanvas.height/4;
   var newWidth = windowBounds.xRight - windowBounds.xLeft;
   var newHeight = windowBounds.yBottom - windowBounds.yTop;
-  desiredCircleArea = (newWidth * newHeight)/ 500;
+  desiredCircleArea = (newWidth * newHeight)/ 400;
   windowCircles.forEach(function(c){
     c.x = c.x * (newWidth/lastWidth);
     c.y = c.y * (newHeight/lastHeight);
@@ -123,12 +128,12 @@ var WindowCircle = function(){
   this.growthSpeedY = this.finalSizeY / transitionTime;
   this.currentHover = 1;
   this.draw = function(){
-    topctx.beginPath();
-    topctx.fillStyle = 'black';
-    topctx.arc(this.x,this.y,(this.currentSizeX * this.currentHover),0,Math.PI * 2);
-    topctx.fill();
+    winctx.beginPath();
+    winctx.fillStyle = 'black';
+    winctx.arc(this.x,this.y,(this.currentSizeX * this.currentHover),0,Math.PI * 2);
+    winctx.fill();
     //topctx.fillRect(this.x,this.y,this.currentSizeX,this.currentSizeY);
-    topctx.closePath();
+    winctx.closePath();
 
   }
 }
@@ -220,6 +225,11 @@ var updateColor = function(){
 var updateTopCanvas = function(){
   topctx.clearRect(0,0,topCanvas.width,topCanvas.height);
   updateTopParticles();
+}
+var updateWindowCanvas = function(){
+  winctx.clearRect(0,0,windowCanvas.width,windowCanvas.height);
+  //function to draw currentproject
+  //change globalComposite to destination-in
   updateWindowCircles();
 }
 var render = function(){
