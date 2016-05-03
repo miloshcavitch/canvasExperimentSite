@@ -1,8 +1,6 @@
 var elTiempo = new Date();
 var topCanvas = document.getElementById('bubbles-canvas');
 var topctx = topCanvas.getContext('2d');
-var windowCanvas = document.getElementById('window-canvas');
-var winctx = windowCanvas.getContext('2d');
 topCanvas.width = window.innerWidth;
 topCanvas.height = window.innerHeight;
 var transitionTime = 30;
@@ -75,14 +73,14 @@ var updateTopParticles = function(){
 var testWindowSize = function(){
   if (topCanvas.width != window.innerWidth){
     topCanvas.width = window.innerWidth;
-    windowCanvas.width = window.innerWidth;
+    backCanvas.width = window.innerWidth;
     topEmitter.x = topCanvas.width + 100;
 
     updateBounds();
   }
   if (topCanvas.height != window.innerHeight){
     topCanvas.height = window.innerHeight;
-    windowCanvas.height = window.innerHeight;
+    backCanvas.height = window.innerHeight;
     topEmitter.y = topCanvas.height + 30;
     updateBounds();
   }
@@ -128,12 +126,12 @@ var WindowCircle = function(){
   this.growthSpeedY = this.finalSizeY / transitionTime;
   this.currentHover = 1;
   this.draw = function(){
-    winctx.beginPath();
-    winctx.fillStyle = 'black';
-    winctx.arc(this.x,this.y,(this.currentSizeX * this.currentHover),0,Math.PI * 2);
-    winctx.fill();
+    topctx.beginPath();
+    topctx.fillStyle = 'black';
+    topctx.arc(this.x,this.y,(this.currentSizeX * this.currentHover),0,Math.PI * 2);
+    topctx.fill();
     //topctx.fillRect(this.x,this.y,this.currentSizeX,this.currentSizeY);
-    winctx.closePath();
+    topctx.closePath();
 
   }
 }
@@ -198,6 +196,7 @@ var checkFrame = function(){
     console.log('MID!');
     windowState = 'mid';
     tweenCount = 0;
+    //color alpha switch-over;
   }
   if (windowState === 'mid' && tweenCount >= 200){
     console.log('SHRINK!');
@@ -219,19 +218,19 @@ $('.project-title').hover(function(){
 ////////////////////////////////
 ///////////////////////////////
 var updateColor = function(){
-  $('#bubbles-canvas').css('background-color', colorShader((colorRay[Math.floor(Math.random() * 765)]), 170));
+  $('body').css('background-color', colorShader((colorRay[Math.floor(Math.random() * 765)]), 170));
 }
 
 var updateTopCanvas = function(){
+  topctx.globalCompositeOperation = 'source-over';
   topctx.clearRect(0,0,topCanvas.width,topCanvas.height);
+  topctx.fillStyle = 'red';
+  topctx.fillRect(0,0,window.innerWidth,window.innerHeight);
   updateTopParticles();
-}
-var updateWindowCanvas = function(){
-  winctx.clearRect(0,0,windowCanvas.width,windowCanvas.height);
-  //function to draw currentproject
-  //change globalComposite to destination-in
+  topctx.globalCompositeOperation = 'destination-out';
   updateWindowCircles();
 }
+
 var render = function(){
   updateTopCanvas();
 }

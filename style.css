@@ -1,5 +1,4 @@
 body {
-  background-color: black;
   position: static;
   top: 0;
   right: 0;
@@ -165,10 +164,10 @@ nav ul li a {
 }
 
 #bubbles-canvas,
-#window-canvas{
+#back-canvas{
   z-index: -1;
   position: fixed;
   left: 0;
   top: 0;
-  transition: background-color 3s;
+
 }
