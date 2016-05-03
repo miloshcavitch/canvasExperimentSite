@@ -78,6 +78,3 @@ $('#myCanvas').click(function(){
     gravity = 0;
   }
 });
-var activeBack = function(){
-  updateFetti();
-}

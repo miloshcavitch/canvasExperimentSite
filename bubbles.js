@@ -229,6 +229,7 @@ var updateTopCanvas = function(){
   updateTopParticles();
   topctx.globalCompositeOperation = 'destination-out';
   updateWindowCircles();
+  //below is for testing
 }
 
 var render = function(){
