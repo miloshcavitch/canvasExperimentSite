@@ -1,13 +1,13 @@
-var projectsRay = [{name: "HUE WARS", description: "Elitr nemore prodesset sea ei, cum et quando aeterno. Congue causae salutatus duo ne, nam id hinc eripuit omittantur, an rationibus honestatis eloquentiam eos.", link: "#"},
+  var projectsRay = [{name: "HUE WARS", description: "Elitr nemore prodesset sea ei, cum et quando aeterno. Congue causae salutatus duo ne, nam id hinc eripuit omittantur, an rationibus honestatis eloquentiam eos.", link: "#"},
                 {name: "FUNFETTI", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", link: "#"},
                 {name: "PIXEL SMOKE", description: "Quidam mediocrem eam ei. Vim partiendo liberavisse ad. Ut omnis consulatu est, duo nibh zril iisque, no.", link: "#"},];
 var titleIndex = 0;
 var titleSwitch = true;
-$('#ta').css('left', '-150%');
+$('#ta').css('left', '-125%');
 $('#ta').css('display', 'none');
-$('#da').css('left', '150%');
+$('#da').css('left', '225%');
 $('#da').css('display', 'none');
-var updateProject = function(){
+var updateLink = function(){
   var inToT, outOfT, inToD, outOfD;
   if (titleSwitch === true){
     inToT = '#ta';
@@ -44,3 +44,12 @@ var updateProject = function(){
     titleIndex = 0;
   }
 }
+
+var updateProject = function(){
+  updateColor();
+  updateLink();
+
+}
+$(document).on('click', function(){
+  updateProject();
+});
