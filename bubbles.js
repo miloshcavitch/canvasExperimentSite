@@ -1,6 +1,8 @@
 var elTiempo = new Date();
 var topCanvas = document.getElementById('bubbles-canvas');
 var topctx = topCanvas.getContext('2d');
+var backCanvas = document.getElementById('back-canvas');
+var backCTX = backCanvas.getContext('2d');
 topCanvas.width = window.innerWidth;
 topCanvas.height = window.innerHeight;
 var transitionTime = 30;
@@ -73,14 +75,12 @@ var updateTopParticles = function(){
 var testWindowSize = function(){
   if (topCanvas.width != window.innerWidth){
     topCanvas.width = window.innerWidth;
-    backCanvas.width = window.innerWidth;
     topEmitter.x = topCanvas.width + 100;
 
     updateBounds();
   }
   if (topCanvas.height != window.innerHeight){
     topCanvas.height = window.innerHeight;
-    backCanvas.height = window.innerHeight;
     topEmitter.y = topCanvas.height + 30;
     updateBounds();
   }
@@ -106,17 +106,26 @@ var updateBounds = function(){
     c.x = c.x * (newWidth/lastWidth);
     c.y = c.y * (newHeight/lastHeight);
   });
+
+  backCanvas.width = (windowBounds.xRight - windowBounds.xLeft) + maxWindowBubbleSize * 2;
+  backCanvas.height = (windowBounds.yBottom - windowBounds.yTop) + maxWindowBubbleSize * 2;
+  var leftPX = (windowBounds.xLeft - maxWindowBubbleSize) + 'px';
+  var topPX = (windowBounds.yTop - maxWindowBubbleSize) + 'px';
+  $('#back-canvas').css('left', leftPX);
+  $('#back-canvas').css('top', topPX);
+
 }
+var maxWindowBubbleSize = 75;
 updateBounds()//init setting;
 var WindowCircle = function(){
   this.x = (Math.random() * (windowBounds.xRight -windowBounds.xLeft)) + windowBounds.xLeft;
   this.y = (Math.random() * (windowBounds.yBottom - windowBounds.yTop)) + windowBounds.yTop;
   var maxSize = desiredCircleArea/10;
-  this.finalSizeX =  Math.random() * 75;
+  this.finalSizeX =  Math.random() * maxWindowBubbleSize;
   if (this.x + this.finalSizeX > windowBounds.xRight - this.finalSizeX){
     this.x = windowBounds.xRight - this.finalSizeX;
   }
-  this.finalSizeY = Math.random() * 75;
+  this.finalSizeY = Math.random() * maxWindowBubbleSize;
   if (this.y + this.finalSizeY > windowBounds.yBottom - this.finalSizeY){
     this.y = windowBounds.yBottom - this.finalSizeY;
   }
@@ -125,8 +134,8 @@ var WindowCircle = function(){
   this.growthSpeedX = this.finalSizeX / transitionTime;
   this.growthSpeedY = this.finalSizeY / transitionTime;
   this.currentHover = 1;
-  this.dx = (Math.random() * 0.5) - 0.25;
-  this.dy = (Math.random() * 0.5) - 0.25;
+  this.dx = (Math.random() * 0.4) - 0.2;
+  this.dy = (Math.random() * 0.4) - 0.2;
   this.draw = function(){
     this.x += this.dx;
     this.y += this.dy;
@@ -231,20 +240,11 @@ var updateColor = function(){
 var updateTopCanvas = function(){
   topctx.globalCompositeOperation = 'source-over';
   topctx.clearRect(0,0,topCanvas.width,topCanvas.height);
-  topctx.fillStyle = 'red';
+  topctx.fillStyle = 'green';
   topctx.fillRect(0,0,window.innerWidth,window.innerHeight);
+  topctx.strokeRect(windowBounds.xLeft, windowBounds.yTop,windowBounds.xRight - windowBounds.xLeft,windowBounds.yBottom - windowBounds.yTop);
   updateTopParticles();
 
-  topctx.strokeStyle = 'white';
-  topctx.globalAlpha = 0.3;
-  topctx.lineWidth = 5;
-  windowCircles.forEach(function(wC){
-    topctx.beginPath();
-    topctx.arc(wC.x,wC.y,(wC.currentHover * wC.currentSizeX),0,Math.PI * 2);
-    topctx.stroke();
-    topctx.closePath();
-  });
-  topctx.globalAlpha = 1;
 
   topctx.globalCompositeOperation = 'destination-out';
   updateWindowCircles();
