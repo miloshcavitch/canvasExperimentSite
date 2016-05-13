@@ -134,11 +134,17 @@ var WindowCircle = function(){
   this.growthSpeedX = this.finalSizeX / transitionTime;
   this.growthSpeedY = this.finalSizeY / transitionTime;
   this.currentHover = 1;
-  this.dx = (Math.random() * 0.4) - 0.2;
-  this.dy = (Math.random() * 0.4) - 0.2;
+  this.dx = (Math.random() * 1.5) - 0.75;
+  this.dy = (Math.random() * 1.5) - 0.75;
   this.draw = function(){
     this.x += this.dx;
     this.y += this.dy;
+    if (this.x  - this.finalSizeX <= windowBounds.xLeft|| this.x + this.finalSizeX>= windowBounds.xRight){
+      this.dx *= -1;
+    }
+    if (this.y - this.finalSizeX <= windowBounds.yTop || this.y + this.finalSizeX >= windowBounds.yBottom){
+      this.dy *= -1;
+    }
     topctx.beginPath();
     topctx.fillStyle = 'black';
     topctx.arc(this.x,this.y,(this.currentSizeX * this.currentHover),0,Math.PI * 2);
@@ -240,9 +246,8 @@ var updateColor = function(){
 var updateTopCanvas = function(){
   topctx.globalCompositeOperation = 'source-over';
   topctx.clearRect(0,0,topCanvas.width,topCanvas.height);
-  topctx.fillStyle = 'green';
+  topctx.fillStyle = 'gray';
   topctx.fillRect(0,0,window.innerWidth,window.innerHeight);
-  topctx.strokeRect(windowBounds.xLeft, windowBounds.yTop,windowBounds.xRight - windowBounds.xLeft,windowBounds.yBottom - windowBounds.yTop);
   updateTopParticles();
 
 
