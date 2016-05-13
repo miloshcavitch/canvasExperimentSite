@@ -1,3 +1,4 @@
+
   var projectsRay = [{name: "HUE WARS", description: "Elitr nemore prodesset sea ei, cum et quando aeterno. Congue causae salutatus duo ne, nam id hinc eripuit omittantur, an rationibus honestatis eloquentiam eos.", link: "#", func: function(){updateStars()}},
                 {name: "FUNFETTI", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", link: "#", func: function(){updateFetti()}},
                 {name: "PIXEL SMOKE", description: "Quidam mediocrem eam ei. Vim partiendo liberavisse ad. Ut omnis consulatu est, duo nibh zril iisque, no.", link: "#", func: function(){}},
@@ -45,7 +46,22 @@ var updateLink = function(){
     titleIndex = 0;
   }
 }
-
+var updateFunc = function(){
+  switch (titleIndex){
+    case 0:
+      activeBack = activeBack = projectsRay[2].func;
+      break;
+    case 1:
+      activeBack = projectsRay[3].func;
+      break;
+    case 2:
+      activeBack = projectsRay[0].func;
+      break;
+    case 3:
+      activeBack = projectsRay[1].func;
+      break;
+  }
+}
 var updateProject = function(){
   updateColor();
   updateLink();

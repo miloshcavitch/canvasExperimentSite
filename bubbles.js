@@ -125,14 +125,17 @@ var WindowCircle = function(){
   this.growthSpeedX = this.finalSizeX / transitionTime;
   this.growthSpeedY = this.finalSizeY / transitionTime;
   this.currentHover = 1;
+  this.dx = (Math.random() * 0.5) - 0.25;
+  this.dy = (Math.random() * 0.5) - 0.25;
   this.draw = function(){
+    this.x += this.dx;
+    this.y += this.dy;
     topctx.beginPath();
     topctx.fillStyle = 'black';
     topctx.arc(this.x,this.y,(this.currentSizeX * this.currentHover),0,Math.PI * 2);
     topctx.fill();
     //topctx.fillRect(this.x,this.y,this.currentSizeX,this.currentSizeY);
     topctx.closePath();
-
   }
 }
 var updateWindowCircles = function(){
@@ -203,9 +206,10 @@ var checkFrame = function(){
     windowState = 'shrink';
     tweenCount = 0;
     updateProject();
+    console.log(titleIndex);
   }
   if (windowState === 'shrink' && tweenCount >= transitionTime){
-    activeBack = projectsRay[titleIndex].func;
+    updateFunc();
     mouse.x = window.innerWidth/2;
     mouse.y = window.innerHeight/2;
     console.log('grow!')
