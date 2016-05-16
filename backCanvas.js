@@ -2,7 +2,7 @@ var mouse = {x: undefined, y: undefined};
 $(document).mousemove(function(event){//mouse input
   mouse.x = event.pageX - windowBounds.xLeft + maxWindowBubbleSize;
   mouse.y = event.pageY - windowBounds.yTop + maxWindowBubbleSize;
-  console.log(mouse.x + ", " + mouse.y);
+  //console.log(mouse.x + ", " + mouse.y);
 });
 
 backCanvas.width = window.innerWidth;
