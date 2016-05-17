@@ -43,6 +43,10 @@ var updateLink = function(){
     $(inToD).css('left', '50%');
   }, 10)
   titleSwitch = !titleSwitch;
+  $('#carousel-selector').children().css('width', '7px');
+  $('#carousel-selector').children().css('height', '7px');
+  $('#carousel-selector').children().eq(titleIndex).css('width', '10px');
+  $('#carousel-selector').children().eq(titleIndex).css('height', '10px');
   projectIndex = titleIndex;
   titleIndex++;
   if (titleIndex === projectsRay.length){
