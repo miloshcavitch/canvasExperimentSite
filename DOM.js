@@ -52,11 +52,15 @@ var updateLink = function(){
 var updateFunc = function(){
   activeBack = projectsRay[projectIndex].func;
 }
+
 var updateProject = function(){
   updateColor();
   updateLink();
-
 }
+$('#carousel-selector').on('click', function(event){
+  titleIndex = parseInt(event.target.id);
+
+});
 /*
 $(document).on('click', function(){
   //commented out for testing
@@ -65,6 +69,16 @@ $(document).on('click', function(){
   windowState = 'shrink';
 });
 */
-$('#Mmenu ').on('click', function(){
+$(document).on('swipeleft', function(){
+  updateProject();
+  tweenCount = 0;
+  windowState = 'shrink';
+});
+
+$(document).on('tap', function(){
+  console.log('bruh');
+})
+
+$('#Mmenu').on('click', function(){
   console.log('this is it what');
 });

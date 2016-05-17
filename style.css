@@ -92,6 +92,21 @@ nav ul li a {
   width: 50%;
   transition: left 2s;
 }
+#carousel-selector{
+  width: 50%;
+  margin: 0 auto;
+}
+.carousel-selected{
+  opacity: 0.5;
+}
+.circle {
+  border-radius: 50%;
+  width: 7px;
+  height: 7px;
+  background-color: black;
+  opacity: 0.2;
+  margin: 5px;
+}
 /*media queries*/
 @media only screen and (max-width: 682px){
   nav {
