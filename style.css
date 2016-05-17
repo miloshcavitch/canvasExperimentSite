@@ -105,7 +105,13 @@ nav ul li a {
   height: 7px;
   background-color: black;
   opacity: 0.2;
-  margin: 5px;
+  margin: 3px;
+  transition: width 0.2s, height 0.2s;
+  float: left;
+}
+.circle:hover{
+  width: 12px;
+  height: 12px;
 }
 /*media queries*/
 @media only screen and (max-width: 682px){

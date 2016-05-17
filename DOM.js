@@ -57,9 +57,10 @@ var updateProject = function(){
   updateColor();
   updateLink();
 }
+var nextPossibleSwitch = false;
 $('#carousel-selector').on('click', function(event){
   titleIndex = parseInt(event.target.id);
-
+  nextPossibleSwitch = true;
 });
 /*
 $(document).on('click', function(){

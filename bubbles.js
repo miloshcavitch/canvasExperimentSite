@@ -236,6 +236,12 @@ var repopulateWindowCircles = function(){
 var tweenCount = 0;
 var checkFrame = function(){
   tweenCount++;
+  if (nextPossibleSwitch && windowState === 'mid'){// && choice isn't already selected
+    windowState = 'shrink';
+    tweenCount = 0;
+    nextPossibleSwitch = false;
+    updateProject();
+  }
   if (windowState === 'grow' && tweenCount === transitionTime){
     //console.log('MID!');
     windowState = 'mid';
