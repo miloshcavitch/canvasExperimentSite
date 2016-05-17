@@ -59,8 +59,14 @@ var updateProject = function(){
 }
 var nextPossibleSwitch = false;
 $('#carousel-selector').on('click', function(event){
-  titleIndex = parseInt(event.target.id);
-  nextPossibleSwitch = true;
+  var index = titleIndex -1;
+  if (index < 0){
+    index = projectsRay.length -1;
+  }
+  if (index != parseInt(event.target.id)){
+    titleIndex = parseInt(event.target.id);
+    nextPossibleSwitch = true;
+  }
 });
 /*
 $(document).on('click', function(){
