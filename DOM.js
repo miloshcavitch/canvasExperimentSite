@@ -1,7 +1,7 @@
 
   var projectsRay = [{name: "HUE WARS", description: "Elitr nemore prodesset sea ei, cum et quando aeterno. Congue causae salutatus duo ne, nam id hinc eripuit omittantur, an rationibus honestatis eloquentiam eos.", link: "#", func: function(){updateStars()}},
                 {name: "FUNFETTI", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", link: "#", func: function(){updateFetti()}},
-                {name: "PIXEL SMOKE", description: "Quidam mediocrem eam ei. Vim partiendo liberavisse ad. Ut omnis consulatu est, duo nibh zril iisque, no.", link: "#", func: function(){}},
+                {name: "PIXEL SMOKE", description: "Quidam mediocrem eam ei. Vim partiendo liberavisse ad. Ut omnis consulatu est, duo nibh zril iisque, no.", link: "#", func: function(){updateSmoke()}},
                 {name: "WOBBLE WINDOW", description: "Lorem ipsum dolor sit amet. Vim partiendo liberavisse ad.", link: 'https://www.facebook.com', func: function(){updateWobble()}}];
 var titleIndex = 0;
 var projectIndex = titleIndex;
@@ -43,15 +43,18 @@ var updateLink = function(){
     $(inToD).css('left', '50%');
   }, 10)
   titleSwitch = !titleSwitch;
-  $('#carousel-selector').children().css('width', '7px');
-  $('#carousel-selector').children().css('height', '7px');
-  $('#carousel-selector').children().eq(titleIndex).css('width', '10px');
-  $('#carousel-selector').children().eq(titleIndex).css('height', '10px');
+  setActiveCarousel();
   projectIndex = titleIndex;
   titleIndex++;
   if (titleIndex === projectsRay.length){
     titleIndex = 0;
   }
+}
+var setActiveCarousel = function(){
+  $('#carousel-selector').children().css('width', '7px');
+  $('#carousel-selector').children().css('height', '7px');
+  $('#carousel-selector').children().eq(titleIndex).css('width', '10px');
+  $('#carousel-selector').children().eq(titleIndex).css('height', '10px');
 }
 var updateFunc = function(){
   activeBack = projectsRay[projectIndex].func;
@@ -67,9 +70,10 @@ $('#carousel-selector').on('click', function(event){
   if (index < 0){
     index = projectsRay.length -1;
   }
-  if (index != parseInt(event.target.id)){
+  if (index != parseInt(event.target.id) && event.target.id != ''){
     titleIndex = parseInt(event.target.id);
     nextPossibleSwitch = true;
+    setActiveCarousel();
   }
 });
 /*
