@@ -100,3 +100,7 @@ $('#Mmenu').on('click', function(){
   $('#Mnav').css({transform: 'translateX(-100%)'});
 
 });
+$('.cross').on('click', function(){
+  $('#Mmenu').css('display', 'block');
+  $('#Mnav').css({transform: 'translateX(100%)'});
+})
