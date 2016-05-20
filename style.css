@@ -24,7 +24,7 @@ nav {
   margin-right: 6px;
 }
 
-nav ul {
+nav ul, #Mnav ul {
   list-style: none;
 }
 
@@ -34,10 +34,27 @@ nav ul li {
   margin-right: 5px;
   border-right: 1px solid white;
 }
-nav ul li a {
+nav ul li a, #Mnav ul li a{
   text-decoration: none;
   color: white;
   font-size: 1em;
+}
+#Mnav{
+  display: none;
+  position: fixed;
+  top: 0px;
+  height: 100%;
+  background-color: black;
+  left: 100%;
+  transition: transform 0.4s ease;
+}
+#Mnav ul{
+  margin-top: 40px;
+  left: -10px;
+}
+#Mnav ul li{
+  margin-top: 20px;
+  margin-right: 20px;
 }
 #Mmenu{
   display: none;
@@ -149,6 +166,9 @@ nav ul li a {
     display: none;
   }
   #Mmenu {
+    display: block;
+  }
+  #Mnav {
     display: block;
   }
   .project-description{

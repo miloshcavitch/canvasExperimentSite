@@ -96,4 +96,7 @@ $(document).on('tap', function(){
 
 $('#Mmenu').on('click', function(){
   console.log('this is it what');
+  $('#Mmenu').css('display', 'none');
+  $('#Mnav').css({transform: 'translateX(-100%)'});
+
 });
