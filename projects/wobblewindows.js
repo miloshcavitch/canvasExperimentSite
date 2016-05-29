@@ -21,7 +21,6 @@ for (var i = 0; i < 500; i++){
   rects.push(new RECT());
 }
 var updateWobble = function(){
-  backCTX.fillStyle = 'black';
   backCTX.fillRect(0,0,backCanvas.width,backCanvas.height);
   for (var i = 0; i < rects.length; i++){
     rects[i].x += rects[i].dx;
