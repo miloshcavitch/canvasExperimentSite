@@ -17,8 +17,9 @@ var previewPoly = function(){
 var previewCircle = function(){
   this.color = Math.floor(Math.random() * 360)
   this.type = 'circle';
-  this.colorSpeed = Math.random()
-  this.globalAlpha = Math.random()
+  this.colorSpeed = Math.floor(Math.random() * 5) + 1;
+  this.globalAlpha = Math.random();
+  this.alphaSpeed = Math.random() * 0.05;
   this.positions = [];
   this.radius = Math.random() * 40;
   this.positions.push(new previewPoint() );
@@ -98,20 +99,37 @@ var renderPoly = function(shape){
   if (shape.globalAlpha >= 1){
     shape.alphaSpeed *= -1;
   }
-  backCTX.fillStyle = "hsl(" + shape.color + ", 100%, 50%)";
+  backCTX.fillStyle = 'black';
+  shape.color += shape.colorSpeed;
   backCTX.fill();
 }
 var renderCircle = function(shape){
-  backCTX.moveTo(shape.positions[0].worldX, shape.positions[0].worldY);
   backCTX.globalAlpha = shape.globalAlpha;
   shape.globalAlpha += shape.alphaSpeed;
   if (shape.globalAlpha >= 1){
     shape.alphaSpeed *= -1;
   }
-  backCTX.fillStyle = "hsl(" + shape.color + ", 100%, 50%)";
+  backCTX.fillStyle = 'black';
+  backCTX.arc(shape.positions[0].worldX, shape.positions[0].worldY, shape.radius, 0, Math.PI * 2);
+  backCTX.fill();
+}
+var renderSprite = function(sprite){
+  sprite.shapes.forEach(function(shape){
+    switch (shape.type){
+      case 'poly':
+        renderPoly(shape);
+        break;
+      case 'circle':
+        renderCircle(shape);
+        break;
+    }
+  });
+  backCTX.fillStyle = 'black';
+  backCTX.globalAlpha = 1;
 }
 var updateDrawingApp = function(){
   backCTX.clearRect(0,0,backCanvas.width,backCanvas.height);
   backGrid();
+  renderSprite(pseudoSprite);
   //include vector shapes and drawings
 }
