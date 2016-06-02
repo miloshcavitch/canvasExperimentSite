@@ -2,7 +2,8 @@
   var projectsRay = [{name: "HUE WARS", description: "Elitr nemore prodesset sea ei, cum et quando aeterno. Congue causae salutatus duo ne, nam id hinc eripuit omittantur, an rationibus honestatis eloquentiam eos.", link: "#", func: function(){updateStars()}},
                 {name: "FUNFETTI", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", link: "#", func: function(){updateFetti()}},
                 {name: "PIXEL SMOKE", description: "Quidam mediocrem eam ei. Vim partiendo liberavisse ad. Ut omnis consulatu est, duo nibh zril iisque, no.", link: "#", func: function(){updateSmoke()}},
-                {name: "WOBBLE WINDOW", description: "Lorem ipsum dolor sit amet. Vim partiendo liberavisse ad.", link: 'https://www.facebook.com', func: function(){updateWobble()}}];
+                {name: "WOBBLE WINDOW", description: "Lorem ipsum dolor sit amet. Vim partiendo liberavisse ad.", link: 'https://www.facebook.com', func: function(){updateWobble()}},
+                {name: "VECTOR DRAWING APP", description: "Lorem ipsum, milo is cool milo is dope milo is the man this is not a subliminal message it is quite liminal.", link: '#', func: function(){updateDrawingApp()}}];
 var titleIndex = 0;
 var projectIndex = titleIndex;
 var titleSwitch = true;

@@ -289,4 +289,5 @@ var updateTopCanvas = function(){
 
 var render = function(){
   updateTopCanvas();
+  topctx.fillStyle = 'black';
 }
