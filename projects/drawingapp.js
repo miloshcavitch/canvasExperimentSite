@@ -36,7 +36,7 @@ var polyEditPointRender = function(shape, color){
  backCTX.globalAlpha = 0.6;
   shape.positions.forEach(function(p){
    backCTX.beginPath();
-   backCTX.arc(p.worldX, p.worldY, handleSize, 0, 2 * Math.PI);
+   backCTX.arc(p.worldX, p.worldY, 10, 0, 2 * Math.PI);
    backCTX.fillStyle = color;
    backCTX.fill();
   });
@@ -170,7 +170,10 @@ var renderSprite = function(sprite){
 var updateDrawingApp = function(){
   backCTX.clearRect(0,0,backCanvas.width,backCanvas.height);
   backGrid();
+  pseudoSprite.shapes[8].positions[0].worldX = mouse.x;
+  pseudoSprite.shapes[8].positions[0].worldY = mouse.y;
   renderSprite(pseudoSprite);
+  polyEditPointRender(pseudoSprite.shapes[8], '#aaa');
   frontGridRender();
   //include vector shapes and drawings
 }
