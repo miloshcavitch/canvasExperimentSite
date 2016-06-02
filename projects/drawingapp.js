@@ -1,26 +1,36 @@
 var pseudoSprite = {shapes: []};
-for (var i = 0; i < 3; i++){
-  pseudoSprite.shapes.push({color: Math.floor(Math.random() * 360), globalAlpha: Math.random(), positions: []});
-  var random = Math.floor(Math.random() * 10);
-  pseudoSprite.shapes[i].positions.push({worldX: Math.random() * (backCanvas.width/5) + (backCanvas.width * i), worldY: Math.random() * backCanvas.height });
-}
+
 var previewPoint = function(){
   this.worldX = Math.random() * backCanvas.width;
   this.worldY = Math.random() * backCanvas.height;
 }
-var previewCircle = function(]){
+var previewPoly = function(){
+  this.color = Math.floor(Math.random() * 360);
+  this.type = 'poly';
+  this.globalAlpha = Math.random();
+  this.positions = [];
+  var random = Math.floor(Math.random() * 8) + 2;
+  for ( var i = 0; i < random; i++){
+    this.positions.push(new previewPoint() );
+  }
+}
+var previewCircle = function(){
   this.color = Math.floor(Math.random() * 360)
+  this.type = 'circle';
   this.colorSpeed = Math.random()
   this.globalAlpha = Math.random()
   this.positions = [];
   this.radius = Math.random() * 40;
-  this.positions.push(new previewPoint());
+  this.positions.push(new previewPoint() );
 }
 
 for (var i = 0; i < 5; i++){
   pseudoSprite.shapes.push(new previewCircle());
 }
-
+for (var i = 0; i < 5; i++){
+  pseudoSprite.shapes.push(new previewPoly());
+}
+console.log(pseudoSprite);
 var polyEditPointRender = function(shape, color){
   ctx.globalAlpha = 0.6;
   shape.positions.forEach(function(p){
@@ -78,7 +88,28 @@ var backGrid = function(){
     pos += increment;
   }
 }
-
+var renderPoly = function(shape){
+  backCTX.moveTo(shape.positions[0].worldX, shape.positions[0].worldY);
+  shape.positions.forEach(function(p){
+    backCTX.lineTo(p.worldX, p.worldY);
+  });
+  backCTX.globalAlpha = shape.globalAlpha;
+  shape.globalAlpha += shape.alphaSpeed;
+  if (shape.globalAlpha >= 1){
+    shape.alphaSpeed *= -1;
+  }
+  backCTX.fillStyle = "hsl(" + shape.color + ", 100%, 50%)";
+  backCTX.fill();
+}
+var renderCircle = function(shape){
+  backCTX.moveTo(shape.positions[0].worldX, shape.positions[0].worldY);
+  backCTX.globalAlpha = shape.globalAlpha;
+  shape.globalAlpha += shape.alphaSpeed;
+  if (shape.globalAlpha >= 1){
+    shape.alphaSpeed *= -1;
+  }
+  backCTX.fillStyle = "hsl(" + shape.color + ", 100%, 50%)";
+}
 var updateDrawingApp = function(){
   backCTX.clearRect(0,0,backCanvas.width,backCanvas.height);
   backGrid();
