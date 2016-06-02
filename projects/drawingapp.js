@@ -7,7 +7,7 @@ var previewPoint = function(){
 var previewPoly = function(){
   this.color = Math.floor(Math.random() * 360);
   this.type = 'poly';
-  this.globalAlpha = Math.random();
+  this.globalAlpha = Math.random() * 0.7;
   this.positions = [];
   var random = Math.floor(Math.random() * 8) + 2;
   for ( var i = 0; i < random; i++){
@@ -18,7 +18,7 @@ var previewCircle = function(){
   this.color = Math.floor(Math.random() * 360)
   this.type = 'circle';
   this.colorSpeed = Math.floor(Math.random() * 5) + 1;
-  this.globalAlpha = Math.random();
+  this.globalAlpha = Math.random() * 0.5;
   this.alphaSpeed = Math.random() * 0.05;
   this.positions = [];
   this.radius = Math.random() * 40;
@@ -33,24 +33,24 @@ for (var i = 0; i < 5; i++){
 }
 console.log(pseudoSprite);
 var polyEditPointRender = function(shape, color){
-  ctx.globalAlpha = 0.6;
+ backCTX.globalAlpha = 0.6;
   shape.positions.forEach(function(p){
-    ctx.beginPath();
-    ctx.arc(p.worldX, p.worldY, handleSize, 0, 2 * Math.PI);
-    ctx.fillStyle = color;
-    ctx.fill();
+   backCTX.beginPath();
+   backCTX.arc(p.worldX, p.worldY, handleSize, 0, 2 * Math.PI);
+   backCTX.fillStyle = color;
+   backCTX.fill();
   });
-  ctx.beginPath();
-  ctx.globalAlpha = 0.4;
-  ctx.moveTo(shape.positions[0].worldX, shape.positions[0].worldY);
+ backCTX.beginPath();
+ backCTX.globalAlpha = 0.4;
+ backCTX.moveTo(shape.positions[0].worldX, shape.positions[0].worldY);
   shape.positions.forEach(function(p){
-    ctx.lineTo(p.worldX, p.worldY);
+   backCTX.lineTo(p.worldX, p.worldY);
   });
-  ctx.lineTo(shape.positions[0].worldX, shape.positions[0].worldY);
-  ctx.strokeStyle = color;
-  ctx.lineWidth = 1;
-  ctx.stroke();
-  ctx.globalAlpha = 1;
+ backCTX.lineTo(shape.positions[0].worldX, shape.positions[0].worldY);
+ backCTX.strokeStyle = color;
+ backCTX.lineWidth = 1;
+ backCTX.stroke();
+ backCTX.globalAlpha = 1;
 }
 var backGrid = function(){
   backCTX.beginPath();
@@ -89,26 +89,66 @@ var backGrid = function(){
     pos += increment;
   }
 }
+
+var gridCount = 16;
+var frontGridRender = function(){
+  var increment = backCanvas.height/gridCount;
+ backCTX.strokeStyle = 'white';
+ backCTX.lineWidth = 0.25;
+  var gridPos =backCanvas.width/2;
+  while(gridPos > 0){//verticals
+   backCTX.beginPath();
+   backCTX.moveTo(gridPos, 0);
+   backCTX.lineTo(gridPos,backCanvas.height);
+   backCTX.stroke();
+    gridPos -= increment;
+   backCTX.closePath();
+  }
+  gridPos =backCanvas.width/2 + increment;
+  while (gridPos <backCanvas.width){
+   backCTX.beginPath();
+   backCTX.moveTo(gridPos, 0);
+   backCTX.lineTo(gridPos,backCanvas.height);
+   backCTX.stroke();
+    gridPos += increment;
+   backCTX.closePath();
+  }
+  gridPos = increment;
+  for (var i = 0; i < gridCount; i++){//horizontals
+   backCTX.beginPath();
+   backCTX.moveTo(0, gridPos);
+   backCTX.lineTo(backCanvas.width, gridPos);
+   backCTX.stroke();
+    gridPos += increment;
+   backCTX.closePath();
+  }
+}
+
+
 var renderPoly = function(shape){
   backCTX.moveTo(shape.positions[0].worldX, shape.positions[0].worldY);
   shape.positions.forEach(function(p){
     backCTX.lineTo(p.worldX, p.worldY);
   });
   backCTX.globalAlpha = shape.globalAlpha;
+  /*
   shape.globalAlpha += shape.alphaSpeed;
-  if (shape.globalAlpha >= 1){
+  if (shape.globalAlpha >= 0.6 || shape.globalAlpha <= 0.1){
     shape.alphaSpeed *= -1;
   }
+  */
   backCTX.fillStyle = 'black';
   shape.color += shape.colorSpeed;
   backCTX.fill();
 }
 var renderCircle = function(shape){
   backCTX.globalAlpha = shape.globalAlpha;
+  /*
   shape.globalAlpha += shape.alphaSpeed;
-  if (shape.globalAlpha >= 1){
+  if (shape.globalAlpha >= 0.6 || shape.globalAlpha <= 0.1){
     shape.alphaSpeed *= -1;
   }
+  */
   backCTX.fillStyle = 'black';
   backCTX.arc(shape.positions[0].worldX, shape.positions[0].worldY, shape.radius, 0, Math.PI * 2);
   backCTX.fill();
@@ -131,5 +171,6 @@ var updateDrawingApp = function(){
   backCTX.clearRect(0,0,backCanvas.width,backCanvas.height);
   backGrid();
   renderSprite(pseudoSprite);
+  frontGridRender();
   //include vector shapes and drawings
 }
