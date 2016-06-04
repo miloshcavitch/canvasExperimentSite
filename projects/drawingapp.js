@@ -5,7 +5,7 @@ var previewPoint = function(){
   this.worldY = Math.random() * backCanvas.height;
 }
 var previewPoly = function(){
-  this.color = Math.floor(Math.random() * 360);
+  this.color = 'black';
   this.type = 'poly';
   this.globalAlpha = Math.random() * 0.7;
   this.positions = [];
@@ -25,15 +25,16 @@ var previewCircle = function(){
   this.positions.push(new previewPoint() );
 }
 
-for (var i = 0; i < 5; i++){
-  pseudoSprite.shapes.push(new previewCircle());
+for (var i = 0; i < 7; i++){
+  pseudoSprite.shapes.push(new previewCircle() );
 }
-for (var i = 0; i < 5; i++){
-  pseudoSprite.shapes.push(new previewPoly());
+for (var i = 0; i < 2; i++){
+  pseudoSprite.shapes.push(new previewPoly() );
 }
+pseudoSprite.shapes[0].globalAlpha = 0.8;
 console.log(pseudoSprite);
 var polyEditPointRender = function(shape, color){
- backCTX.globalAlpha = 0.6;
+  backCTX.globalAlpha = 0.6;
   shape.positions.forEach(function(p){
    backCTX.beginPath();
    backCTX.arc(p.worldX, p.worldY, 10, 0, 2 * Math.PI);
@@ -124,8 +125,59 @@ var frontGridRender = function(){
   }
 }
 
+var gridSnap = function(){
+  var candidate = {worldX: undefined, worldY: undefined, type: 'grid'};
+  var pointX, pointY;
+  var pointSwitch = true;
+  var xCount = 0;
+  var yCount = 0;
+  while(pointSwitch === true){
+    if (Math.abs(mouse.y - yCount * backCanvas.height/gridCount) <= 5){
+      pointSwitch = false;
+      pointY = yCount * backCanvas.height/gridCount;
+    }
+    if (yCount * backCanvas.height/gridCount >= backCanvas.width){
+      pointSwitch = false;
+    }
+    yCount++;
+  }
+  pointSwitch = true;
+  if (pointY != undefined){
+    while(pointSwitch === true){
+      if (mouse.x >= backCanvas.width/2){
+        if (Math.abs(mouse.x-backCanvas.width/2 - xCount * backCanvas.height/gridCount) <= 5){
+          pointSwitch = false;
+          pointX = (xCount * backCanvas.height/gridCount) + backCanvas.width/2;
+        }
+        if (xCount * backCanvas.height/gridCount >= backCanvas.width){
+          pointSwitch = false;
+        }
+        xCount++;
+      } else {
+        if (Math.abs((backCanvas.width/2 - xCount * backCanvas.height/gridCount) - mouse.x) <= 5){
+          pointSwitch = false;
+          pointX = backCanvas.width/2 - (xCount * backCanvas.height/gridCount);
+        }
+        if ((backCanvas.width/2 - xCount * backCanvas.height/gridCount) < 0){
+          pointSwitch = false;
+        }
+        xCount++;
+      }
+    }
+    if (pointX != undefined && pointY != undefined){
+      pseudoSprite.shapes[7].positions[0].worldX = pointX;
+      pseudoSprite.shapes[7].positions[0].worldY = pointY;
+      //console.log('snap!');
+    } else {
+      pseudoSprite.shapes[7].positions[0].worldX = mouse.x;
+      pseudoSprite.shapes[7].positions[0].worldY = mouse.y;
+    }
+  }
+  //return candidate;
+}
 
 var renderPoly = function(shape){
+  backCTX.beginPath();
   backCTX.moveTo(shape.positions[0].worldX, shape.positions[0].worldY);
   shape.positions.forEach(function(p){
     backCTX.lineTo(p.worldX, p.worldY);
@@ -137,11 +189,13 @@ var renderPoly = function(shape){
     shape.alphaSpeed *= -1;
   }
   */
-  backCTX.fillStyle = 'black';
+  backCTX.fillStyle = shape.color;
   shape.color += shape.colorSpeed;
   backCTX.fill();
+  backCTX.closePath()
 }
 var renderCircle = function(shape){
+  backCTX.beginPath();
   backCTX.globalAlpha = shape.globalAlpha;
   /*
   shape.globalAlpha += shape.alphaSpeed;
@@ -152,6 +206,7 @@ var renderCircle = function(shape){
   backCTX.fillStyle = 'black';
   backCTX.arc(shape.positions[0].worldX, shape.positions[0].worldY, shape.radius, 0, Math.PI * 2);
   backCTX.fill();
+  backCTX.closePath();
 }
 var renderSprite = function(sprite){
   sprite.shapes.forEach(function(shape){
@@ -167,13 +222,21 @@ var renderSprite = function(sprite){
   backCTX.fillStyle = 'black';
   backCTX.globalAlpha = 1;
 }
+var color = 0;
+var updateShapeColor = function(){
+  color += 1;
+  pseudoSprite.shapes[7].color = "hsl(" + color + ", 100%, 50%)";
+}
 var updateDrawingApp = function(){
   backCTX.clearRect(0,0,backCanvas.width,backCanvas.height);
   backGrid();
-  pseudoSprite.shapes[8].positions[0].worldX = mouse.x;
-  pseudoSprite.shapes[8].positions[0].worldY = mouse.y;
+  pseudoSprite.shapes[7].positions[0].worldX = mouse.x;
+  pseudoSprite.shapes[7].positions[0].worldY = mouse.y;
+  updateShapeColor();
   renderSprite(pseudoSprite);
-  polyEditPointRender(pseudoSprite.shapes[8], '#aaa');
-  frontGridRender();
+
+  polyEditPointRender(pseudoSprite.shapes[7], '#aaa');
+  //frontGridRender();
+  //gridSnap();
   //include vector shapes and drawings
 }

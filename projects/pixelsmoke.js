@@ -4,9 +4,19 @@ var smokeEmitter = function(){
   this.y = backCanvas.height/2;
   this.dx = 30;
   this.dy = 15;
+  this.ddx = ( Math.random() * 2 ) - 1;
+  this.ddy = ( Math.random() * 2 ) - 1;
   this.update = function(){
     this.x += this.dx;
+    this.dx += this.ddx;
     this.y += this.dy;
+    this.dy += this.ddy;
+    if ( Math.abs(this.dx) >= 40 ){
+      this.ddx *= -1;
+    }
+    if (Math.abs(this.dy) >= 30){
+      this.ddy *= -1;
+    }
     if (this.x <= 0 || this.x >= backCanvas.width){
       this.dx *= -1;
     }
