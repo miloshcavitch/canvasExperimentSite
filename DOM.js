@@ -71,10 +71,11 @@ $('#carousel-selector').on('click', function(event){
   if (index < 0){
     index = projectsRay.length -1;
   }
-  if (index != parseInt(event.target.id) && event.target.id != ''){
+  if (index != parseInt(event.target.id) && event.target.id != 'carousel-selector'){
     titleIndex = parseInt(event.target.id);
     nextPossibleSwitch = true;
     setActiveCarousel();
+    console.log('id: ' + event.target.id);
   }
 });
 /*

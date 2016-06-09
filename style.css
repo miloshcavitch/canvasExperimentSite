@@ -44,7 +44,7 @@ nav ul li a, #Mnav ul li a{
   user-select: none;
   -webkit-user-select: none;
   position: absolute;
-  top: -30px;
+  top: 5px;
   right: 10px;
 }
 #Mnav{
@@ -122,8 +122,8 @@ nav ul li a, #Mnav ul li a{
   width: 50%;
   margin: 0 auto;
   position: fixed;
-  left: 50%;
-  top: 50%;
+  left: 44%;
+  top: 70%;
 }
 .carousel-selected{
   opacity: 0.5;
@@ -168,6 +168,7 @@ nav ul li a, #Mnav ul li a{
   .project-description p{
     font-size: .9em;
   }
+  #carousel-selector {}
 }
 
 @media only screen and (max-width: 520px){
@@ -206,6 +207,16 @@ nav ul li a, #Mnav ul li a{
   }
   .project-description{
     font-size: .6em;
+  }
+  #carousel-selector{
+    top: 68%;
+  }
+  .circle {
+    width: 1px;
+    height: 1px;
+    margin: 1px;
+    transition: width 0.2s, height 0.2s;
+    float: left;
   }
 }
 @media only screen and (max-width: 193px){

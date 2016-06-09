@@ -232,7 +232,7 @@ var updateDrawingApp = function(){
   backGrid();
   pseudoSprite.shapes[7].positions[0].worldX = mouse.x;
   pseudoSprite.shapes[7].positions[0].worldY = mouse.y;
-  updateShapeColor();
+  //updateShapeColor();
   renderSprite(pseudoSprite);
 
   polyEditPointRender(pseudoSprite.shapes[7], '#aaa');
