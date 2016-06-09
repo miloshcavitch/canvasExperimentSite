@@ -102,6 +102,11 @@ var updateBounds = function(){
   var newWidth = windowBounds.xRight - windowBounds.xLeft;
   var newHeight = windowBounds.yBottom - windowBounds.yTop;
   desiredCircleArea = (newWidth * newHeight)/ 400;
+  if (newWidth * newHeight <= 85000){
+    maxWindowBubbleSize = 50;
+  } else {
+    maxWindowBubbleSize = 75;
+  }
   windowCircles.forEach(function(c){
     c.x = c.x * (newWidth/lastWidth);
     c.y = c.y * (newHeight/lastHeight);
