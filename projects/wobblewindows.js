@@ -25,6 +25,31 @@ var bubble = new SmoothPath(backCTX);
 for (var i = 0; i < wobbleFrames[0].length; i++){
   bubble.addPoint(new SmoothPoint(100 + wobbleFrames[0][i].pos.x, 100 + wobbleFrames[0][i].pos.y));
 }
+var bubbleFrame = 0;
+var bubbleRunning = false;
+
+var updateBubble = function(){
+  console.log('bubbling');
+  if (!bubbleRunning){
+    if (Math.random() > 0.1){
+      bubbleRunning = true;
+    }
+  } else {
+    bubbleFrame++;
+    if (bubbleFrame >= wobbleFrames.length - 100){
+      bubbleRunning = false;
+      bubbleFrame = 0;
+    }
+  }
+  for ( var i = 0; i < wobbleFrames[0].length; i++){
+    bubble.positions[i].handleIn.x = 0.8 * (wobbleFrames[bubbleFrame][i].handleIn.x) + backCanvas.width/2;
+    bubble.positions[i].handleIn.y = 0.8 * (wobbleFrames[bubbleFrame][i].handleIn.y) + backCanvas.height/2;
+    bubble.positions[i].x = 0.8 * (wobbleFrames[bubbleFrame][i].pos.x) + backCanvas.width/2;
+    bubble.positions[i].y = 0.8 * (wobbleFrames[bubbleFrame][i].pos.y) + backCanvas.height/2;
+    bubble.positions[i].handleOut.x = 0.8 * (wobbleFrames[bubbleFrame][i].handleOut.x) + backCanvas.width/2;
+    bubble.positions[i].handleOut.y = 0.8 * (wobbleFrames[bubbleFrame][i].handleOut.y) + backCanvas.height/2;
+  }
+}
 
 var updateWobble = function(){
   backCTX.fillRect(0,0,backCanvas.width,backCanvas.height);
@@ -41,6 +66,7 @@ var updateWobble = function(){
     backCTX.closePath();
   }
   backCTX.fillStyle = 'black';
-  bubble.updateHandles();
+  updateBubble();
+  //bubble.updateHandles();
   bubble.draw();
 }
