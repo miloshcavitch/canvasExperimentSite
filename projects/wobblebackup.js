@@ -20,12 +20,6 @@ var RECT = function(){
 for (var i = 0; i < 500; i++){
   rects.push(new RECT());
 }
-
-var bubble = new SmoothPath(backCTX);
-for (var i = 0; i < wobbleFrames[0].length; i++){
-  bubble.addPoint(new SmoothPoint(100 + wobbleFrames[0][i].pos.x, 100 + wobbleFrames[0][i].pos.y));
-}
-
 var updateWobble = function(){
   backCTX.fillRect(0,0,backCanvas.width,backCanvas.height);
   for (var i = 0; i < rects.length; i++){
@@ -40,7 +34,4 @@ var updateWobble = function(){
     backCTX.fill();
     backCTX.closePath();
   }
-  backCTX.fillStyle = 'black';
-  bubble.updateHandles();
-  bubble.draw();
 }

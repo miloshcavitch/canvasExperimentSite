@@ -127,12 +127,12 @@ nav ul li a, #Mnav ul li a{
   transition: left 2s;
 }
 #carousel-selector{
-  width: 50%;
   margin: 0 auto;
   position: fixed;
-  left: 44%;
-  top: 70%;
+  left: 25%;
+  top: 90%;
 }
+
 .carousel-selected{
   opacity: 0.5;
 }
