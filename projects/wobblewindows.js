@@ -65,8 +65,10 @@ var updateWobble = function(){
     backCTX.fill();
     backCTX.closePath();
   }
-  backCTX.fillStyle = 'black';
+  backCTX.globalCompositeOperation = 'destination-in';
   updateBubble();
   //bubble.updateHandles();
   bubble.draw();
+  backCTX.fillStyle = 'red';
+  backCTX.globalCompositeOperation = 'source-over';
 }

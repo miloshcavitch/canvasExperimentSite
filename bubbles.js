@@ -276,7 +276,7 @@ $('.project-title').hover(function(){
 ////////////////////////////////
 ///////////////////////////////
 var updateColor = function(){
-  $('body').css('background-color', colorShader((colorRay[Math.floor(Math.random() * 765)]), 170));
+  //$('body').css('background-color', colorShader((colorRay[Math.floor(Math.random() * 765)]), 170));
 }
 
 var updateTopCanvas = function(){
