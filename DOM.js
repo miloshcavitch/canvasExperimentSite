@@ -1,9 +1,9 @@
 
-  var projectsRay = [{name: "HUE WARS", description: "A game, influenced by games like Galaga and bullet-hell games where you have to match the color of you ship/gun to the color of your target in order to kill it. WIP", link: "#", func: function(){updateStars()}},
+  var projectsRay = [{name: "HUE WARS", description: "A game, influenced by games like Galaga and bullet-hell games where you have to match the color of you ship/gun to the color of your target in order to kill it. WIP", link: "canvasprojects/huewars/index.html", func: function(){updateStars()}},
                 {name: "FUNFETTI", description: "Particle system test using color changing circles, gravity and wall and floor collisions.", link: "#", func: function(){updateFetti()}},
-                {name: "PIXEL TRAIL", description: "If the early 90's had dope particle physics, this is what it would look like.", link: "#", func: function(){updateSmoke()}},
-                {name: "WOBBLE WINDOW", description: "An interactive see-through circle that has a physics engine applied to it to create a nice wobbly water balloon effect.", link: 'https://www.facebook.com', func: function(){updateWobble()}},
-                {name: "VECTOR DRAWING APP", description: "A vector drawing program that turns drawings into code, that can be used in a HTML canvas.", link: '#', func: function(){updateDrawingApp()}}];
+                {name: "PIXEL TRAIL", description: "If the early 90's had dope particle physics, this is what it would look like.", link: "canvasprojects/pixelsmoke/index.html", func: function(){updateSmoke()}},
+                {name: "WOBBLE WINDOW", description: "An interactive see-through circle that has a physics engine applied to it to create a nice wobbly water balloon effect.", link: 'canvasprojects/wobblewindow/index.html', func: function(){updateWobble()}},
+                {name: "VECTOR DRAWING APP", description: "A vector drawing program that turns drawings into code, that can be used in a HTML canvas.", link: 'canvasprojects/vectorapp/index.html', func: function(){updateDrawingApp()}}];
 var titleIndex = 0;
 var projectIndex = titleIndex;
 var titleSwitch = true;

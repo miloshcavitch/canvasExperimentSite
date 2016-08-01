@@ -27,9 +27,10 @@ for (var i = 0; i < wobbleFrames[0].length; i++){
 }
 var bubbleFrame = 0;
 var bubbleRunning = false;
-
+var bubbleSize = 0.8;
 var updateBubble = function(){
-  console.log('bubbling');
+  bubbleSize = window.innerWidth / 2000;
+  console.log(bubbleSize);
   if (!bubbleRunning){
     if (Math.random() > 0.1){
       bubbleRunning = true;
@@ -42,12 +43,12 @@ var updateBubble = function(){
     }
   }
   for ( var i = 0; i < wobbleFrames[0].length; i++){
-    bubble.positions[i].handleIn.x = 0.8 * (wobbleFrames[bubbleFrame][i].handleIn.x) + backCanvas.width/2;
-    bubble.positions[i].handleIn.y = 0.8 * (wobbleFrames[bubbleFrame][i].handleIn.y) + backCanvas.height/2;
-    bubble.positions[i].x = 0.8 * (wobbleFrames[bubbleFrame][i].pos.x) + backCanvas.width/2;
-    bubble.positions[i].y = 0.8 * (wobbleFrames[bubbleFrame][i].pos.y) + backCanvas.height/2;
-    bubble.positions[i].handleOut.x = 0.8 * (wobbleFrames[bubbleFrame][i].handleOut.x) + backCanvas.width/2;
-    bubble.positions[i].handleOut.y = 0.8 * (wobbleFrames[bubbleFrame][i].handleOut.y) + backCanvas.height/2;
+    bubble.positions[i].handleIn.x = (bubbleSize * (wobbleFrames[bubbleFrame][i].handleIn.x)) + backCanvas.width/2;
+    bubble.positions[i].handleIn.y = (bubbleSize * (wobbleFrames[bubbleFrame][i].handleIn.y)) + backCanvas.height/2;
+    bubble.positions[i].x = (bubbleSize * (wobbleFrames[bubbleFrame][i].pos.x)) + backCanvas.width/2;
+    bubble.positions[i].y = (bubbleSize * (wobbleFrames[bubbleFrame][i].pos.y)) + backCanvas.height/2;
+    bubble.positions[i].handleOut.x = (bubbleSize * (wobbleFrames[bubbleFrame][i].handleOut.x)) + backCanvas.width/2;
+    bubble.positions[i].handleOut.y = (bubbleSize * (wobbleFrames[bubbleFrame][i].handleOut.y)) + backCanvas.height/2;
   }
 }
 
