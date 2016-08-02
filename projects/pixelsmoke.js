@@ -11,17 +11,15 @@ var smokeEmitter = function(){
     this.dx += this.ddx;
     this.y += this.dy;
     this.dy += this.ddy;
-    if ( Math.abs(this.dx) >= 40 ){
-      this.ddx *= -1;
+    if (this.x >= backCanvas.width/2){
+      this.dx -= 4;
+    } else {
+      this.dx += 4;
     }
-    if (Math.abs(this.dy) >= 30){
-      this.ddy *= -1;
-    }
-    if (this.x <= 0 || this.x >= backCanvas.width){
-      this.dx *= -1;
-    }
-    if (this.y <= 0 || this.y >= backCanvas.height){
-      this.dy *= -1;
+    if (this.y >= backCanvas.height/2){
+      this.dy -= 4;
+    } else {
+      this.dy += 4;
     }
   }
 }
