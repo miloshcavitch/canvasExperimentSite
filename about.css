@@ -1,4 +1,11 @@
 #about{
-  margin-left: 20px;
   width: 50%;
+}
+
+body {
+  background-color: gray;
+  transition: background-color 2s;
+}
+p {
+  margin-left: 20px;
 }
