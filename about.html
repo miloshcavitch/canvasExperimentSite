@@ -4,10 +4,12 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <link rel='stylesheet' type='text/css' href='style.css'>
+    <link rel='stylesheet' type='text/css' href='about.css'>
     <link rel='stylesheet' type='text/css' href='transitions.css'>
     <meta name='viewport' content='width=device-width' initial-scale='1.0'>
   </head>
   <body>
+    <canvas id='bubbles-canvas'></canvas>
     <div id='Mmenu'><div></div><span></span><span></span><span></span></div>
     <div id='Mnav'>
       <p class='cross'>&#10060</p>
@@ -28,29 +30,18 @@
       <h1>MILO ARNERICH-HATCH</h1>
       <h3>CANVAS-EXPERIMENTS</h3>
     </div>
-
-    <div class='project-title' id='ta'>
+    <div id='about'>
+      <p>Born and raised in NYC's East Village, Milo has been solving complex creative problems since grade school.
+        He was first introduced to programming early on through Microworlds, animation with Flash and later to 3D Design with Maya and Rhino.
+        While studying Electro-Mechanical Engineering (with the intention of building some cool robots) at CUNY City-Tech he was reintroduced to programming,
+        realizing he enjoyed it alot.
+        After becoming disillusioned by what "being an electro-mechanical engineer" really means,
+        Milo began to rekindle his artistic roots using previously learned techniques in addition to the new, more technical ones.</p>
     </div>
-    <div class='project-description' id='da'>
+    <div id='skills'>
+      <p>Skills:<br>Javascript<br>CSS3<br>HTML5<br>AUTOCAD<br>RHINO3D<br>MAYA</p>
     </div>
-    <div class='project-title' id='tb'>
-    </div>
-    <div class='project-description' id='db'>
-    </div>
-    <div id='carousel-selector'></div>
-    <canvas id='back-canvas'></canvas>
-    <canvas id='bubbles-canvas' width='400px' height='400px'></canvas>
-    <script type='text/javascript' src='projects/smooth.js'></script>
-    <script type='text/javascript' src='rainbowray.js'></script>
-    <script type='text/javascript' src='bubbles.js'></script>
-    <script type='text/javascript' src='backCanvas.js'></script>
-    <script type='text/javascript' src='projects/wobbleFrames.js'></script>
-    <script type='text/javascript' src='projects/wobblewindows.js'></script>
-    <script type='text/javascript' src='projects/funfetti.js'></script>
-    <script type='text/javascript' src='projects/stars.js'></script>
-    <script type='text/javascript' src='projects/pixelsmoke.js'></script>
-    <script type='text/javascript' src='projects/drawingapp.js'></script>
     <script type='text/javascript' src='DOM.js'></script>
-    <script type='text/javascript' src='update.js'></script>
+    <script type='text/javascript' src='aboutJS/bubbles.js'></script>
   </body>
 </html>

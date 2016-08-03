@@ -12,14 +12,14 @@ var smokeEmitter = function(){
     this.y += this.dy;
     this.dy += this.ddy;
     if (this.x >= backCanvas.width/2){
-      this.dx -= 4;
+      this.dx -= 3;
     } else {
-      this.dx += 4;
+      this.dx += 3;
     }
     if (this.y >= backCanvas.height/2){
-      this.dy -= 4;
+      this.dy -= 3;
     } else {
-      this.dy += 4;
+      this.dy += 3;
     }
   }
 }
