@@ -44,7 +44,7 @@ var topParticle = function(){
   this.maxSize = false;
   this.minAlpha = false;
 }
-var unit = 1;
+var unit = window.innerWidth/1600;
 var bubbles = [];
 var Bubble = function(){
   this.size = Math.random() * 40 + 3;
@@ -121,7 +121,7 @@ var testWindowSize = function(){
   if (topCanvas.width != window.innerWidth){
     topCanvas.width = window.innerWidth;
     topEmitter.x = topCanvas.width + 100;
-
+    unit = window.innerWidth/1600
     updateBounds();
   }
   if (topCanvas.height != window.innerHeight){
