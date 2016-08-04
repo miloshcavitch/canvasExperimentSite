@@ -44,7 +44,49 @@ var topParticle = function(){
   this.maxSize = false;
   this.minAlpha = false;
 }
-var updateTopParticles = function(){
+var unit = 1;
+var bubbles = [];
+var Bubble = function(){
+  this.size = Math.random() * 40 + 3;
+  this.x = Math.random() * 1600;
+  this.y = topCanvas.height + this.size;
+
+  this.sinCount = 0;
+  this.dx = Math.random() * 1 - 0.5;
+  this.color = Math.floor(Math.random() * 360);
+  this.update = function(){
+    this.sinCount += 0.05;
+    this.x +=  this.size/6 * (Math.sin(this.sinCount) + this.dx);
+    this.y -=  this.size/3 * unit;
+    this.color += 2;
+    this.render();
+  }
+  this.render = function(){
+    topctx.beginPath();
+    topctx.globalAlpha = 0.2 + (Math.sin(this.sinCount) * 0.2);
+    topctx.fillStyle = '#eee';
+    topctx.arc(this.x * unit, this.y, this.size * unit, 0, Math.PI * 2);
+    topctx.fill();
+    topctx.closePath();
+  }
+}
+var bubblesFrame = 0;
+var newParticleUpdate = function(){
+  bubblesFrame++;
+  if (bubblesFrame % 3 === 0){
+    bubbles.push(new Bubble() );
+  }
+  for (var i = 0; i < bubbles.length; i++){
+    //console.log(i);
+    bubbles[i].update();
+    if (bubbles[i].y < 0 - bubbles[i].size){
+      bubbles.splice(i, 1);
+      i--;
+    }
+  }
+  topctx.globalAlpha = 1;
+}
+var originalParticleUpdate = function(){
   particles.push(new topParticle);
   for (var i = 0; i < particles.length; i++){
     particles[i].draw();
@@ -70,6 +112,9 @@ var updateTopParticles = function(){
 
   }
   topctx.globalAlpha = 1;
+}
+var updateTopParticles = function(){
+  newParticleUpdate();
 }
 
 var testWindowSize = function(){

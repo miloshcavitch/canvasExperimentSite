@@ -4,12 +4,26 @@ var bubbles = [];
 var bubbleFrame = 0;
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-
+var unit = canvas.width/1600;
 $(document).ready(function(){
   $('body').css('background-color', 'black');
+  setTimeout(function(){
+    $('#about').css('opacity', '1');
+  }, 1100);
 });
-
 var shade = {sat: 0, light: 90, frame: 0};
+
+var testWindowSize = function(){
+  if (canvas.width != window.innerWidth){
+    canvas.width = window.innerWidth;
+    unit = canvas.width/1600
+    //updateBounds();
+  }
+  if (canvas.height != window.innerHeight){
+    canvas.height = window.innerHeight;
+    //updateBounds();
+  }
+}
 
 var updateBubbles = function(){
   for (var i = 0; i < bubbles.length; i++){
@@ -22,7 +36,7 @@ var updateBubbles = function(){
   }
 }
 var Bubble = function(){
-  this.size = Math.random() * 30 + 3;
+  this.size = Math.random() * 40 + 3;
   this.x = Math.random() * 1600;
   this.y = canvas.height + this.size;
 
@@ -32,7 +46,7 @@ var Bubble = function(){
   this.update = function(){
     this.sinCount += 0.05;
     this.x +=  this.size/6 * (Math.sin(this.sinCount) + this.dx);
-    this.y -=  this.size/3;
+    this.y -=  this.size/3 * unit;
     this.color += 2;
     this.render();
   }
@@ -40,17 +54,21 @@ var Bubble = function(){
     ctx.beginPath();
     ctx.globalAlpha = 0.2 + (Math.sin(this.sinCount) * 0.2);
     ctx.fillStyle = "hsl(" + this.color + ", " + shade.sat + "%, " + shade.light + "%)";
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.arc(this.x * unit, this.y, this.size * unit, 0, Math.PI * 2);
     ctx.fill();
     ctx.closePath();
   }
 }
 
 var update = function(){
-  if (shade.frame < 80){//2 seconds at 40 per second
+  testWindowSize();
+  if (shade.frame < 100){//2 seconds at 40 per second
     shade.frame++;
-    shade.sat += 100/80;
-    shade.light -= 0.5;
+    shade.sat += 100/100;
+    shade.light -= 40/100;
+    if (shade.light > 49){
+      shade.light = 50;
+    }
   }
   bubbleFrame++;
   if (bubbleFrame % 3 === 0){

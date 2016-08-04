@@ -105,6 +105,7 @@ nav ul li a, #Mnav ul li a{
   top: 33%;
   left: 25%;
   transition: left 2s;
+  opacity: 0;
 }
 
 .project-title a {
@@ -125,6 +126,7 @@ nav ul li a, #Mnav ul li a{
   margin-right: 20px;
   width: 50%;
   transition: left 2s;
+  opacity: 0;
 }
 #carousel-selector{
   margin: 0 auto;
@@ -235,7 +237,7 @@ nav ul li a, #Mnav ul li a{
   }
 }
 @media only screen and (max-height: 315px){
-  body{
+  body {
     background-color: black;
   }
   .project-description{
