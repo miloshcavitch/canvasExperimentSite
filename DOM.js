@@ -4,6 +4,29 @@ $(document).ready(function(){
     $('.project-description').css('opacity', '1');
   }, 1100)
 });
+$('.links').click(function(event){
+  //document.location.href = 'about.html'
+  console.log(event.target.innerHTML);
+  var linkBool = false;
+  var link = ''
+  switch (event.target.innerHTML){
+    case 'ABOUT':
+      link = 'about.html';
+      linkBool = true;
+      break;
+    case 'PORTFOLIO':
+      link = 'canvas.html';
+      linkBool = true;
+      break;
+    case 'CONTACT':
+      linkBool = true;
+      break;
+  }
+  if (linkBool){
+    window.name = JSON.stringify(bubbles);
+    document.location.href = link;
+  }
+});
   var projectsRay = [{name: "HUE WARS", description: "A game, influenced by games like Galaga and bullet-hell games where you have to match the color of you ship/gun to the color of your target in order to kill it. WIP", link: "canvasprojects/huewars/index.html", func: function(){updateStars()}},
                 {name: "FUNFETTI", description: "Particle system test using color changing circles, gravity and wall and floor collisions.", link: "#", func: function(){updateFetti()}},
                 {name: "PIXEL TRAIL", description: "If the early 90's had dope particle physics, this is what it would look like.", link: "canvasprojects/pixelsmoke/index.html", func: function(){updateSmoke()}},

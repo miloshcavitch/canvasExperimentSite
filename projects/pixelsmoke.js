@@ -108,7 +108,7 @@ var rectSmoke = function(){
     this.speed = 0.02;
   }
 
-  console.log(this.speed);
+  //console.log(this.speed);
   this.opacity = 0.7;
   this.draw = function(){
     this.x += this.dx;

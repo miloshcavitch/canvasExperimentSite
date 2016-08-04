@@ -30,7 +30,7 @@ var bubbleRunning = false;
 var bubbleSize = 0.8;
 var updateBubble = function(){
   bubbleSize = window.innerWidth / 2000;
-  console.log(bubbleSize);
+  //console.log(bubbleSize);
   if (!bubbleRunning){
     if (Math.random() > 0.1){
       bubbleRunning = true;

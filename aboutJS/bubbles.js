@@ -1,6 +1,7 @@
 var canvas = document.getElementById('bubbles-canvas');
 var ctx = canvas.getContext('2d');
-var bubbles = [];
+
+
 var bubbleFrame = 0;
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -11,7 +12,7 @@ $(document).ready(function(){
     $('#about').css('opacity', '1');
   }, 1100);
 });
-var shade = {sat: 0, light: 90, frame: 0};
+var shade = {sat: 0, light: 100, frame: 0};
 
 var testWindowSize = function(){
   if (canvas.width != window.innerWidth){
@@ -35,14 +36,22 @@ var updateBubbles = function(){
     }
   }
 }
-var Bubble = function(){
-  this.size = Math.random() * 40 + 3;
-  this.x = Math.random() * 1600;
-  this.y = canvas.height + this.size;
-
-  this.sinCount = 0;
-  this.dx = Math.random() * 1 - 0.5;
-  this.color = Math.floor(Math.random() * 360);
+var Bubble = function(x, y, color, sinCount, size, dx){
+  if (x != undefined){
+    this.x = x;
+    this.y = y;
+    this.color = color;
+    this.sinCount = sinCount;
+    this.size = size;
+    this.dx = dx;
+  } else {
+    this.size = Math.random() * 40 + 3;
+    this.x = Math.random() * 1600;
+    this.y = canvas.height + this.size;
+    this.sinCount = 0;
+    this.dx = Math.random() * 1 - 0.5;
+    this.color = Math.floor(Math.random() * 360);
+  }
   this.update = function(){
     this.sinCount += 0.05;
     this.x +=  this.size/6 * (Math.sin(this.sinCount) + this.dx);
@@ -59,13 +68,22 @@ var Bubble = function(){
     ctx.closePath();
   }
 }
-
+var bubbles = [];
+if (window.name != ''){
+  var lastBubble = JSON.parse(window.name);
+  console.log(lastBubble[0]);
+  for ( var i = 0; i < lastBubble.length; i++){
+    bubbles.push( new Bubble(lastBubble[i].x, lastBubble[i].y, lastBubble[i].color, lastBubble[i].sinCount, lastBubble[i].size, lastBubble[i].dx) );
+    console.log(bubbles[i]);
+    debugger;
+  }
+}
 var update = function(){
   testWindowSize();
   if (shade.frame < 100){//2 seconds at 40 per second
     shade.frame++;
     shade.sat += 100/100;
-    shade.light -= 40/100;
+    shade.light -= 50/100;
     if (shade.light > 49){
       shade.light = 50;
     }
