@@ -26,6 +26,32 @@ var testWindowSize = function(){
   }
 }
 
+
+$('.links').click(function(event){
+  //document.location.href = 'about.html'
+  console.log(event.target.innerHTML);
+  var linkBool = false;
+  var link = ''
+  switch (event.target.innerHTML){
+    case 'ABOUT':
+      link = 'about.html';
+      linkBool = true;
+      break;
+    case 'PORTFOLIO':
+      link = 'canvas.html';
+      linkBool = true;
+      break;
+    case 'CONTACT':
+      linkBool = true;
+      break;
+  }
+  if (linkBool){
+    window.name = JSON.stringify(bubbles);
+    document.location.href = link;
+  }
+});
+
+
 var updateBubbles = function(){
   for (var i = 0; i < bubbles.length; i++){
     //console.log(i);
@@ -69,6 +95,7 @@ var Bubble = function(x, y, color, sinCount, size, dx){
   }
 }
 var bubbles = [];
+/*
 if (window.name != ''){
   var lastBubble = JSON.parse(window.name);
   console.log(lastBubble[0]);
@@ -78,6 +105,7 @@ if (window.name != ''){
     debugger;
   }
 }
+*/
 var update = function(){
   testWindowSize();
   if (shade.frame < 100){//2 seconds at 40 per second

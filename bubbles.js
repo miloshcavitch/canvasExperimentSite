@@ -45,7 +45,7 @@ var topParticle = function(){
   this.minAlpha = false;
 }
 var unit = window.innerWidth/1600;
-var bubbles = [];
+
 var Bubble = function(){
   this.size = Math.random() * 40 + 3;
   this.x = Math.random() * 1600;
@@ -70,6 +70,17 @@ var Bubble = function(){
     topctx.closePath();
   }
 }
+var bubbles = [];
+
+/*
+if (window.name != ''){
+  var lastBubble = JSON.parse(window.name);
+  for ( var i = 0; i < lastBubble.length; i++){
+    bubbles.push( new Bubble(lastBubble[i].x, lastBubble[i].y, lastBubble[i].color, lastBubble[i].sinCount, lastBubble[i].size, lastBubble[i].dx) );
+    console.log(bubbles[i]);
+  }
+}
+*/
 var bubblesFrame = 0;
 var newParticleUpdate = function(){
   bubblesFrame++;
@@ -114,7 +125,7 @@ var originalParticleUpdate = function(){
   topctx.globalAlpha = 1;
 }
 var updateTopParticles = function(){
-  newParticleUpdate();
+  originalParticleUpdate();
 }
 
 var testWindowSize = function(){
