@@ -110,17 +110,17 @@ nav ul li p, #Mnav ul li p{
   top: 33%;
   left: 25%;
   transition: left 2s;
-  opacity: 0;
 }
 
-.project-title a {
+.project-title p {
   font-size: 1.6em;
   text-decoration: none;
   color: white;
   transition: font-size 0.2s;
+  cursor: pointer;
 }
 
-.project-title a:hover{
+.project-title p:hover{
   font-size: 180%;
 }
 
@@ -131,7 +131,6 @@ nav ul li p, #Mnav ul li p{
   margin-right: 20px;
   width: 50%;
   transition: left 2s;
-  opacity: 0;
 }
 #carousel-selector{
   margin: 0 auto;
@@ -256,5 +255,5 @@ nav ul li p, #Mnav ul li p{
   position: fixed;
   left: 0;
   top: 0;
-
+  opacity: 0;
 }

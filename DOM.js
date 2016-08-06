@@ -1,8 +1,8 @@
 $(document).ready(function(){
+  $('#bubbles-canvas').css('opacity', '1');
   setTimeout(function(){
-    $('.project-title').css('opacity', '1');
-    $('.project-description').css('opacity', '1');
-  }, 1100)
+    $('#back-canvas').css('opacity', '1');
+  }, 100);
 });
 $('.links').click(function(event){
   //document.location.href = 'about.html'
@@ -27,12 +27,28 @@ $('.links').click(function(event){
     document.location.href = link;
   }
 });
-  var projectsRay = [{name: "HUE WARS", description: "A game, influenced by games like Galaga and bullet-hell games where you have to match the color of you ship/gun to the color of your target in order to kill it. WIP", link: "canvasprojects/huewars/index.html", func: function(){updateStars()}},
+$('.project-title').click(function(event){
+  window.name = titleIndex;
+  titleIndex--;
+  console.log(titleIndex);
+  if (titleIndex < 0){
+    titleIndex = 0;
+  }
+  if ( event.target.innerHTML === 'VECTOR DRAWING APP'){
+    titleIndex = 4;
+  }
+  document.location.href = projectsRay[titleIndex].link;
+});
+  var projectsRay = [{name: "HUE WARS", description: "A space-shooter where you have to match the color of your ship/gun to the color of your target in order to kill it. WIP", link: "canvasprojects/huewars/index.html", func: function(){updateStars()}},
                 {name: "FUNFETTI", description: "Particle system test using color changing circles, gravity and wall and floor collisions.", link: "canvasprojects/funfetti/index.html", func: function(){updateFetti()}},
-                {name: "PIXEL TRAIL", description: "If the early 90's had dope particle physics, this is what it would look like.", link: "canvasprojects/pixelsmoke/index.html", func: function(){updateSmoke()}},
-                {name: "WOBBLE WINDOW", description: "An interactive see-through circle that has physics applied to it to create a nice wobbly water balloon effect.", link: 'canvasprojects/wobblewindow/index.html', func: function(){updateWobble()}},
+                {name: "PIXEL TRAIL", description: "If the early 90's had particle physics, this is what it would look like.", link: "canvasprojects/pixelsmoke/index.html", func: function(){updateSmoke()}},
+                {name: "WOBBLE WINDOW", description: "An interactive see-through circle that has physics applied to it to create a wobbly water balloon effect.", link: 'canvasprojects/wobblewindow/index.html', func: function(){updateWobble()}},
                 {name: "VECTOR DRAWING APP", description: "A vector drawing program that turns drawings into code, that can be used in an HTML canvas.", link: 'canvasprojects/vectorapp/index.html', func: function(){updateDrawingApp()}}];
 var titleIndex = 0;
+if (window.name.length < 5 && window.name != ''){
+  titleIndex = parseInt(window.name);
+  console.log('kalsdkfalsdkflasdkf;laskdfal;sdkfalsdkf')
+}
 var projectIndex = titleIndex;
 var titleSwitch = true;
 $('#ta').css('left', '-125%');
@@ -56,7 +72,7 @@ var updateLink = function(){
   $(inToD).css('display', 'block');
   $(inToT).empty();
   $(inToD).empty();
-  $(inToT).append("<a href='" + projectsRay[titleIndex].link + "' <h2>" + projectsRay[titleIndex].name + "</h2></a>");
+  $(inToT).append("<p href='" + projectsRay[titleIndex].link + "' <h2>" + projectsRay[titleIndex].name + "</h2></p>");
   console.log("updateProject: " + titleIndex);
   $(inToD).append("<p>" + projectsRay[titleIndex].description + "</p>");
   $(outOfT).css('left', '150%');
