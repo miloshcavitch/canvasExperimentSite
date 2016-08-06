@@ -44,9 +44,18 @@ $('.project-title').click(function(event){
                 {name: "PIXEL TRAIL", description: "If the early 90's had particle physics, this is what it would look like.", link: "canvasprojects/pixelsmoke/index.html", func: function(){updateSmoke()}},
                 {name: "WOBBLE WINDOW", description: "An interactive see-through circle that has physics applied to it to create a wobbly water balloon effect.", link: 'canvasprojects/wobblewindow/index.html', func: function(){updateWobble()}},
                 {name: "VECTOR DRAWING APP", description: "A vector drawing program that turns drawings into code, that can be used in an HTML canvas.", link: 'canvasprojects/vectorapp/index.html', func: function(){updateDrawingApp()}}];
+
+
+
+var updateFunc = function(){
+  activeBack = projectsRay[projectIndex].func;
+}
+
 var titleIndex = 0;
 if (window.name.length < 5 && window.name != ''){
   titleIndex = parseInt(window.name);
+  projectIndex = titleIndex;
+  updateFunc();
   console.log('kalsdkfalsdkflasdkf;laskdfal;sdkfalsdkf')
 }
 var projectIndex = titleIndex;
@@ -100,9 +109,6 @@ var setActiveCarousel = function(){
   $('#carousel-selector').children().css('height', '7px');
   $('#carousel-selector').children().eq(titleIndex).css('width', '10px');
   $('#carousel-selector').children().eq(titleIndex).css('height', '10px');
-}
-var updateFunc = function(){
-  activeBack = projectsRay[projectIndex].func;
 }
 
 var updateProject = function(){
