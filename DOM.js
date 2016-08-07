@@ -4,6 +4,7 @@ $(document).ready(function(){
     $('#back-canvas').css('opacity', '1');
   }, 100);
 });
+var isContactShowing = false;
 $('.links').click(function(event){
   //document.location.href = 'about.html'
   console.log(event.target.innerHTML);
@@ -19,7 +20,12 @@ $('.links').click(function(event){
       linkBool = true;
       break;
     case 'CONTACT':
-      linkBool = true;
+    isContactShowing = !isContactShowing;
+      if (isContactShowing){
+        $('#contact-form').css('top', '80%');
+      } else {
+        $('#contact-form').css('top', '100%');
+      }
       break;
   }
   if (linkBool){
@@ -56,7 +62,6 @@ if (window.name.length < 5 && window.name != ''){
   titleIndex = parseInt(window.name);
   projectIndex = titleIndex;
   updateFunc();
-  console.log('kalsdkfalsdkflasdkf;laskdfal;sdkfalsdkf')
 }
 var projectIndex = titleIndex;
 var titleSwitch = true;

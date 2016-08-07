@@ -156,6 +156,20 @@ nav ul li p, #Mnav ul li p{
   width: 12px;
   height: 12px;
 }
+
+
+#contact-form {
+  width: 300px;
+  height: 500px;
+  position: fixed;
+  top: 100%;
+  transition: top 1s linear;
+}
+#contact-form form div {
+  float:right;
+}
+
+
 /*media queries*/
 @media only screen and (max-width: 682px){
   nav {
