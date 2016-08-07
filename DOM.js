@@ -4,6 +4,10 @@ $(document).ready(function(){
     $('#back-canvas').css('opacity', '1');
   }, 100);
 });
+$('.contact-cross').click(function(){
+  isContactShowing = false;
+  $('#contact-form').css('top', '110%');
+});
 var isContactShowing = false;
 $('.links').click(function(event){
   //document.location.href = 'about.html'
@@ -24,7 +28,7 @@ $('.links').click(function(event){
       if (isContactShowing){
         $('#contact-form').css('top', '80%');
       } else {
-        $('#contact-form').css('top', '100%');
+        $('#contact-form').css('top', '110%');
       }
       break;
   }

@@ -55,6 +55,17 @@ nav ul li p, #Mnav ul li p{
   right: 10px;
   cursor: pointer;
 }
+.contact-cross {
+  font-size: 1.7em;
+  user-select: none;
+  -webkit-user-select: none;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  top: -30px;
+  right: 0px;
+  cursor: pointer;
+}
 #Mnav{
   display: none;
   position: fixed;
@@ -162,8 +173,8 @@ nav ul li p, #Mnav ul li p{
   width: 300px;
   height: 500px;
   position: fixed;
-  top: 100%;
-  transition: top 1s linear;
+  top: 110%;
+  transition: top 300ms linear;
 }
 #contact-form form div {
   float:right;
