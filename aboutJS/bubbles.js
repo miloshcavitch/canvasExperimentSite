@@ -88,7 +88,7 @@ var Bubble = function(x, y, color, sinCount, size, dx){
   this.render = function(){
     ctx.beginPath();
     ctx.globalAlpha = 0.2 + (Math.sin(this.sinCount) * 0.2);
-    ctx.fillStyle = "hsl(" + this.color + ", " + shade.sat + "%, " + shade.light + "%)";
+    ctx.fillStyle = 'gray'//"hsl(" + this.color + ", " + shade.sat + "%, " + shade.light + "%)";
     ctx.arc(this.x * unit, this.y, this.size * unit, 0, Math.PI * 2);
     ctx.fill();
     ctx.closePath();

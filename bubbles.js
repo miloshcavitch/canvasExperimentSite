@@ -334,11 +334,18 @@ $('.project-title').hover(function(){
 var updateColor = function(){
   //$('body').css('background-color', colorShader((colorRay[Math.floor(Math.random() * 765)]), 170));
 }
-
+var shade = 0;
+var shadeBool = true;
 var updateTopCanvas = function(){
   topctx.globalCompositeOperation = 'source-over';
   topctx.clearRect(0,0,topCanvas.width,topCanvas.height);
-  topctx.fillStyle = 'gray';
+  if (shadeBool){
+    shade++;
+    if (shade >= 50){
+      shadeBool = false;
+    }
+  }
+  topctx.fillStyle = "hsl(0, 0%, " + shade + "%)"//'gray';
   topctx.fillRect(0,0,window.innerWidth,window.innerHeight);
   updateTopParticles();
 

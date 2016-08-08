@@ -13,7 +13,7 @@ $('.links').click(function(event){
   //document.location.href = 'about.html'
   console.log(event.target.innerHTML);
   var linkBool = false;
-  var link = ''
+  var link = '';
   switch (event.target.innerHTML){
     case 'ABOUT':
       link = 'about.html';
