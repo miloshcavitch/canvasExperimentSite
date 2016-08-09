@@ -33,7 +33,7 @@ $('.links').click(function(event){
       break;
   }
   if (linkBool){
-    window.name = JSON.stringify(bubbles);
+    //window.name = JSON.stringify(bubbles);
     document.location.href = link;
   }
 });
@@ -66,6 +66,9 @@ if (window.name.length < 5 && window.name != ''){
   titleIndex = parseInt(window.name);
   projectIndex = titleIndex;
   updateFunc();
+}
+if (titleIndex === NaN){
+  titleIndex = 0;
 }
 var projectIndex = titleIndex;
 var titleSwitch = true;
